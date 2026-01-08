@@ -2,8 +2,7 @@ name: Supabase Keep Alive
 
 on:
   schedule:
-    # 每天 UTC 时间 00:00 运行一次 (北京时间早上 8:00)
-    - cron: '0 0 * * *'
+    - cron: '0 */6 * * *'
   workflow_dispatch: # 允许你在 GitHub 页面手动点击按钮测试运行
 
 jobs:
@@ -13,6 +12,6 @@ jobs:
       - name: Ping Supabase Database
         run: |
           # 这里的 URL 是你的项目地址
-          curl -I -X GET 'https://ejnvwrxkyijsuyochcqo.supabase.co/rest/v1/' \
+          curl -I -X GET 'https://ejnvwrxkyijsuyochcqo.supabase.co/rest/v1/holyfamily?select=*&limit=1' \
           -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
